@@ -13,6 +13,12 @@ In this repo, you'll find the write-ups of the few interesting challenges I mana
 # Day 7
 [Wii-nter hack - Medium, pwn, crypto ](day7/README.md)
 
+# Day 13
+[White as Snow](day13/README.md)
+
+# Day 17
+[Naughty or Nice](day17/README.md)
+
 
 
 # Scoring 
