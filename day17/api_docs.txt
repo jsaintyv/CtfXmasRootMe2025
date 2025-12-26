@@ -1,0 +1,13 @@
+Endpoints:
+
+  GET /             -> health check: {"ok": true, "msg": "naughty-or-nice online"}
+  GET /info         -> epsilon, levels, width, height, classes, base_sha256
+
+  POST /predict [an image (PNG, grayscale, 32x32)]
+    returns: {"label": "Nice|Naughty", "confidence": 0.xx}
+
+  POST /submit [an image (PNG, grayscale, 32x32)]
+    checks:
+      * L_inf(base, adv) <= 0.03137255 (+ tolerance)
+      * label flips after defenses (bit-depth 128)
+    returns: flag on success
