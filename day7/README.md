@@ -41,11 +41,15 @@ You obtain launcher.c.
 Analyzing the source code reveals that the launcher takes the path to an executable as a parameter. In summary:
 
 1. It reads the binary and identifies two parts. It isolates the last 256 bytes, which contain a SHA-256 hash signed with a private RSA key.
+
+```
  _____________________
 | Original game binary|
 |_____________________|
 |   Signed SHA-256    |
 |_____________________|
+```
+
 
 2. Computes the SHA-256 hash of the game binary.
 3. Decrypts the signed hash.
@@ -62,15 +66,18 @@ After some, I found this articles discussing this attack:
 The historical weakness of this system was revealed: it relied on `strncmp`, which stops comparing at the first null byte (`\0`) encountered.
 
 When examining the game images, only the signature for **"super_smash_bros-brawl_rootme_arena"** starts with a `0`:
+
 ```bash
 dd if=games/super_smash_bros-brawl_rootme_arena bs=1 count=$(( $(stat -c%s games/super_smash_bros-brawl_rootme_arena) - 256 )) | sha256sum
 ```
 
----
+
+
 
 # Building the Payload
 
 The base payload is **showflag.c**:
+
 ```bash
 gcc showflag.c -o showflag
 ```
@@ -80,23 +87,27 @@ It is processed by **craft_game.py**, which generates **showflag_signed**.
 Essentially, the script pads the `showflag` binary with a series of numbers until it generates a SHA-256 hash that starts with a zero. Then, it injects the signed hash from **"super_smash_bros-brawl_rootme_arena"**.
 
 The two hashes are not identical, but since `strncmp` stops at the first null byte, they will be considered equal:
+
 ```bash
 python3 craft_game.py showflag
 ```
 
 You can simulate the challenge using:
+
 ```bash
 bash run.sh
 ```
 
----
+
 
 To copy the payload to the SSH server (since `scp` wasn't working), I used copy/paste with base64 encoding:
+
 ```bash
 base64 showflag_signed | xclip -i
 ```
 
 Then, decode it on the server:
+
 ```bash
 cat | base64 -d > /tmp/showflag_signed
 ```
