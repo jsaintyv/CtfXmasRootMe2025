@@ -12,7 +12,7 @@ There are two main challenges:
 
 When I made a mistake and loaded the entire image into memory, I had to force a reboot of my machine. That's why I recommend using `runDocker.sh`, which launches a controlled and memory-limited container.
 
-- Locating the flag within 10^10 pixels. 
+- Locating the flag within 10G pixels. 
 
 ---
 
@@ -49,7 +49,7 @@ buildAndRunPart2.sh
 
 We obtain the final image:
 
-![Clipped](work/final-12100,43000-12600,43500.png)
+![Clipped](final-12100,43000-12600,43500.png)
 
 The QR code is actually double Base64-encoded text, which can be decoded using CyberChef:
 
