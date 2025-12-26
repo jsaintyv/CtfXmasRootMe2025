@@ -114,7 +114,8 @@ cat | base64 -d > /tmp/showflag_signed
 
 Final run, give that: 
 
-`̀``
+```bash
+
 ┌─[wii-user@wiinterhack] - [/app] - [92]
 └─[$] ./launcher /tmp/showflag_signed                      [13:26:14]
 [i] Unciphering signature with public key (m = sig^e mod n).
@@ -136,7 +137,9 @@ Final run, give that:
 
 [GOOD] Signature is VALID!
 RM{Wii_W4s_S3cUr3_but_N0t_for_Fail0verflow!}%               
+
 ```
+
 
 
 
