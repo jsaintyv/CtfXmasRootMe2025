@@ -41,10 +41,10 @@ To avoid an excessively long scan, we first scan `xaac.tif` (25k x 25k resolutio
 buildAndRunPart1.sh
 ```
 
-This extracts data at the coordinates passed as parameters:
+This extracts data at the coordinates passed as parameters: 
 
-```bash
-buildAndRunPart2.sh
+```
+./part2 white_as_snow/xaaa.tif 12100 43000 12600 43500
 ```
 
 We obtain the final image:
